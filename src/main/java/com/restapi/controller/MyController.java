@@ -39,9 +39,21 @@ public class MyController {
 
     @PostMapping("/patient")
     public Patient newPatient(@RequestBody Patient patient){
-        return myService.saveOrUpdate(patient);
-        //return "adding new patient";
+        String pattern = "^([A-Za-z0-9])*$";
+        if (patient.getFirstname().matches(pattern) && patient.getLastname().matches(pattern) ) {
+           System.out.println("valid");
+            return myService.saveOrUpdate(patient);
+        } else {
+                System.out.println("Input format should be [A-Za-z0-9]");
+                return null;
+        }
     }
+
+
+     /*@PostMapping("/patient")
+    public Patient newPatient(@RequestBody Patient patient){
+           return myService.saveOrUpdate(patient);
+    }*/
 
     
 }
