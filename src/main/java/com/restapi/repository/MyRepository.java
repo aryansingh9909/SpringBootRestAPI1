@@ -11,7 +11,7 @@ public interface MyRepository extends MongoRepository<Patient, String> {
 
     //List<Patient> getByName(String name);
     
-    @Query(value = "{$or:[{fname:{$regex:?0,$options:'i'}},{lname:{$regex:?0,$options:'i'}}]}")
+    @Query(value = "{$or:[{firstname:{$regex:?0,$options:'i'}},{lastname:{$regex:?0,$options:'i'}}]}")
     List<Patient> getByFnameAndLname(String name);
 
     
