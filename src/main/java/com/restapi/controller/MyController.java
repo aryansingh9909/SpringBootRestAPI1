@@ -1,5 +1,6 @@
 package com.restapi.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 //import java.util.Optional;
 
@@ -40,7 +41,8 @@ public class MyController {
     @PostMapping("/patient")
     public Patient newPatient(@RequestBody Patient patient){
         String pattern = "^([A-Za-z0-9])*$";
-        if (patient.getFirstname().matches(pattern) && patient.getLastname().matches(pattern) ) {
+       
+        if (patient.getFirstname().matches(pattern) && patient.getLastname().matches(pattern) && patient.getDob().isBefore(LocalDate.now()) ) {
            System.out.println("valid");
             return myService.saveOrUpdate(patient);
         } else {
